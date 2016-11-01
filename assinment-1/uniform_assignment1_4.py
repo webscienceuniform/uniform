@@ -1,4 +1,5 @@
 # pylint: disable=C0103
+# -*- coding: utf-8 -*-
 """ Assignment for Web Science
   Group:  uniform
   Members:
