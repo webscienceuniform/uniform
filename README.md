@@ -1,5 +1,4 @@
 # Assignments
-### Assignment 1
 Of our Introduction to Web Science.
 
 #### Group Members
