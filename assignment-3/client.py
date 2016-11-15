@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # pylint: disable-msg=C0103
 """
-    Simple python programme which asks for
-    name age and Matrikelnummer nummber
+    Simple python program which asks for
+    url whose information should be processed.
 """
 import socket
 
