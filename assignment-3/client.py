@@ -10,8 +10,8 @@ BUFFER_SIZE = 1024
 HOST = '127.0.0.1'
 PORT = 8080
 
-url = "http://www.uni-koblenz.de:80/en/index.html?webscience=1#head"
-
+print("Enter web url")
+url = input()
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 s.send(url.encode('utf-8'))
