@@ -65,7 +65,7 @@ def handle_receving_data(s, file_name):
     is_file_request = b'Content-Type: image/'
 
     if not is_status_200_ok:
-        print("Got response other than 200 OK")
+        print(header.decode())
         return False
 
     save_downloaded_file(header.decode(), file_name, True)
@@ -98,10 +98,8 @@ def start_server(clean_url):
 
     if not is_empty_string(FRAGMENTS):
         PATH = PATH + "#" + FRAGMENTS
-    # request = "GET / HTTP/1.1Host: " + PATH + " \r\n"
-    # here we are using http version 1.0
-    request = "GET " + PATH + " HTTP/1.0\r\n\r\n"
 
+    request = "GET " + PATH + " HTTP/1.1\r\nHost:" + DOMAIN + "\r\n\r\n"
     # lets create an INET, STREAMurling socket
     s = create_socket_server(DOMAIN, PORT)
     # lets send request to the server
