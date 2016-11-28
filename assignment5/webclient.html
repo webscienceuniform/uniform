@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Abusing the HTTP protocol - Example</title>
+  <style>
+    .alert {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="h1">Display data from the Server</h1>
+    The following line changes on the servers command line
+    input: <br>
+    <span id="response" class="alert">
+      This will be replaced by messages from the server
+    </span>
+  </div>
+  <script>
+
+  var response = document.getElementById('response')
+  function reqListener () {
+    response.innerHTML = this.responseText;
+  }
+
+  function createRequest() {
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", "http://localhost:8080/message");
+    oReq.send();
+  }
+
+  setInterval(createRequest, 1000);
+  </script>
+</body>
+</html>
