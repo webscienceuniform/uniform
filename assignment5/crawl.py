@@ -1,5 +1,6 @@
 import re
 import sys
+import signal
 from urllib.request import urlopen
 from urllib.error import HTTPError
 from urllib.parse import urlparse
@@ -22,10 +23,11 @@ downloaded_links = set()
 unique_external_links = set()
 unique_internal_links = set()
 dead_links = set()
-pages = list()
+links_per_page = list()
 
 current_iteration = None
 links_to_visit = LinkQueue()
+linkinfo = list()
 
 
 def clean_url(url):
@@ -67,7 +69,8 @@ def process_url(url):
     external_links = list(filter(lambda url: not is_internal_link(base_url, url), urls))
     external_link_count += len(external_links)
     unique_external_links = unique_external_links.union(set(external_links))
-
+    links_per_page.append(len(external_links) + len(internal_links))
+    linkinfo.append((len(internal_links), len(external_links)))
     for item in iterable_links:
         links_to_visit.put(item, 1)
 
@@ -79,15 +82,28 @@ def main(url):
         while not links_to_visit.empty():
             url = links_to_visit.get()
             process_url(url)
+            length = len(links_per_page)
+            if length >= 1000:
+                links_to_visit.clear()
+
     except Exception as e:
-        print(e)
+        with open("pages.txt", 'w+') as f:
+            f.write(str(links_per_page))
+        with open("info.txt", 'w+') as f:
+            f.write(str(linkinfo))
     print("Total Dead Links is {}".format(dead_link_count))
     print("Total External Links is {}".format(external_link_count))
     print("Total Internal Links is {}".format(internal_link_count))
     print("Total Internal Unique Links is {}".format(len(unique_internal_links)))
     print("Total External Unique Links is {}".format(len(unique_external_links)))
     print("Total Dead Unique Links is {}".format(len(dead_links)))
+    print("Link per page", links_per_page)
 
+
+def graceful_shutdown():
+    print(links_per_page)
+
+    sys.exit(1)
 
 if __name__ == "__main__":
   starting_url = 'http://141.26.208.82/articles/g/e/r/Germany.html' # sys.argv[1]
@@ -95,3 +111,4 @@ if __name__ == "__main__":
   HOST, DOMAIN, PATH, _, PARAMETERS, FRAGMENTS = urlparse(starting_url)
   base_url = HOST + '://' + DOMAIN
   main(starting_url)
+  signal.signal(signal.SIGINT, graceful_shutdown)
