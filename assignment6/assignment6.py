@@ -1,3 +1,8 @@
+""""
+How to use it
+first run the script
+python3 assignment6.py
+"""
 import os
 import sys
 import glob
@@ -63,11 +68,11 @@ def main():
         sorted_list = sorted(artile_infos_with_foreign_words, key=lambda info: info['loan_word'])
         f.write(str(sorted_list))
     arr = list(map(lambda x: (x['total_word'], x['loan_word']), artile_infos_with_foreign_words))
-    plot_graph(arr)
     arr = list(map(lambda x: x[1], arr))
     print("median", median(arr))
     print("mean", mean(arr))
     print("unique loaned word used ", len(all_foreign_words))
+    process_diagram()
 
 
 def draw_scatter_plot(arr):
