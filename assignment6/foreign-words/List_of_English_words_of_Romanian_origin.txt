@@ -1,0 +1,4 @@
+["ban"
+,"hora"
+,"mineriad"
+,"Palatschinke"]

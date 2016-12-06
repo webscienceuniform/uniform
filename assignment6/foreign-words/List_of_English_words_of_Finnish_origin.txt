@@ -1,0 +1,1 @@
+['motti', 'Rapakivi granite', 'salmiakki', 'aapa mire', 'palsa', 'kantele', 'sisu', 'pulk']

@@ -1,0 +1,10 @@
+["Ambarella"
+,"Aniline",
+"Aryan",
+"Atoll",
+"Aubergine",
+"Avatar",
+"Bandana",
+"Banyan",
+"Basmati",
+"Bahuvrihi","Beryl","Bidi","Brinjal","Buddha","Candy","Cheetah","Chuddar","Chukar","Chukker","Citipati","Cot","Cowrie","Crimson","Crocus","Dhal","Das","Datura","Deodar","Deva","Devi","Dharma","Dhoti","Dinghy","Ganja","Gharry","Guar","Gunny","Gurkha","Guru","Jackal","Jaggery","Juggernaut","Jungle","Jute","Karma","Kedgeree","Kermes","Krait","Lac","Lacquer","Langur","Lilac","Loot","Maharajah","Maharani","Maharishi","Mahatma","Mahayana","Mahout","Mandala","Mandarin","Mantra","Maya","Mithras","Moksha","Mugger","Mung bean","Musk","Mynah","Nainsook","Nard","Narghile","Nark","Neem","Nilgai","Nirvana","Opal","Orange","Palanqui","Panthe","Punc","Pundit","Raita","Raj","Rajah","Ramtil","Rani","Rice","Rupee","Saccharo-","Sambal","Sambar","Sandal","Sapphire","Sari","Shaman","Shampoo","Shawl","Singapore","Sri Lank","Sulfu","Sugar","Sunn","Swami","Swastika","Taka","Talipot","Tendu","Teapo","Thug","Til","Toddy","Toon","Tope","Tutty","Vina","Wanderoo","Yoga","Yogi","Zen"]
