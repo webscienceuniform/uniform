@@ -82,6 +82,12 @@ def draw_scatter_plot(arr):
     plt.ylim(0, 1500)
     plt.show()
 
+def draw_histogram(data):
+    plt.hist(data, bins= np.arange(0, 1300, 5), normed=True)
+    plt.ylabel('Loaned Word Frequency')
+    plt.xlabel('Number of Loaned Word')
+    plt.show()
+
 def process_diagram():
     raw_data = None
     with open("result.txt", "r+") as f:
@@ -90,6 +96,8 @@ def process_diagram():
         arr = list(map(lambda x: (x['total_word'], x['loan_word']), raw_data))
         plot_graph(arr)
         draw_scatter_plot(arr)
+        mod_arr = list(map(lambda x: x[1], arr))
+        draw_histogram(mod_arr)
 
 if __name__ == "__main__":
     plot = None
