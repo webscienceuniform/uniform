@@ -2,6 +2,8 @@
 How to use it
 first run the script
 python3 assignment6.py
+if you have already run script before you can only plot by using
+python3 assignment6.py plot
 """
 import os
 import sys
