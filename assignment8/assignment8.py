@@ -1,9 +1,7 @@
 # pylint: disable-msg=C0103
 """ Assignment Number 8"""
-import math
 from pathlib import Path
 import pandas as pd
-from helper import split_with_space
 from helper import word_set_from_text
 from helper import calc_jaccard_similarity
 from helper import cal_term_freq
@@ -82,14 +80,14 @@ def main():
     ger_wordset = df1[df1.name == "German"].iloc[0].word_set
     eu_wordset = df1[df1.name == "Europe"].iloc[0].word_set
     jacc_cof_eu_germany = calc_jaccard_similarity(eu_wordset, ger_wordset)
-    print(jacc_cof_eu_germany)
+    print("Jaccard Coefficient in Document", jacc_cof_eu_germany)
 
     # Question 1.2
     # 1.2 Similarity of Graphs
     ger_outlink = df2[df2.name == "German"].iloc[0].out_links
     eu_outlink = df2[df2.name == "Europe"].iloc[0].out_links
     jacc_cof_eu_germany_links = calc_jaccard_similarity(set(ger_outlink), set(eu_outlink))
-    print(jacc_cof_eu_germany_links)
+    print("Jaccard Coefficient in Links", jacc_cof_eu_germany_links)
 
 
     all_terms = set()
@@ -101,7 +99,6 @@ def main():
         all_docs.append(doc)
 
     doc_feq = Path('./doc_freq.txt')
-
     term_document_freq = None
 
     if doc_feq.is_file():
@@ -111,13 +108,14 @@ def main():
         term_document_freq = document_frequency_of_all_term(all_terms, all_docs)
         with open('doc_freq.txt', 'w+') as f:
             f.write(str(term_document_freq))
+
     # Calculate ifidf scores
     cal_term_freq_each_term(df1, term_document_freq)
     ger_tf_idf = df1[df1.name == "German"].iloc[0].tf_idf
     eu_tf_idf = df1[df1.name == "Europe"].iloc[0].tf_idf
 
-
     print("Cosine", calculate_cosine_similarity(ger_tf_idf, eu_tf_idf))
+    print(df1.head())
 
 
 if __name__ == "__main__":
