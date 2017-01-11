@@ -36,7 +36,7 @@ def cal_term_freq(text_document):
 
 def tfidf(term_freq, total_doc, match_doc):
     """ Calculates term frequency inverse document frequency"""
-    return term_freq * math.log((total_doc/match_doc))
+    return term_freq * math.log((total_doc/match_doc), 10)
 
 
 def calculate_cosine_similarity(tfid_dict_1, tfid_dict_2):
@@ -48,6 +48,3 @@ def calculate_cosine_similarity(tfid_dict_1, tfid_dict_2):
     ecu_dic_tf1 = np.sum(np.square(list(tfid_dict_1.values())))
     ecu_dic_tf2 = np.sum(np.square(list(tfid_dict_2.values())))
     return product / (ecu_dic_tf1 * ecu_dic_tf2)
-
-
-

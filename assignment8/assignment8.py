@@ -21,7 +21,6 @@ def gen_word_set(data_frame):
 
 def cal_doc_freq_of_term(term, list_of_docs):
     """ Calculates the document frequency of given term """
-    global gen_set_of_docs
     # create set from the doc
     # this code seems too slow
     if gen_set_of_docs is None:
@@ -52,7 +51,7 @@ def document_frequency_of_all_term(input_terms, documents):
     return results
 
 
-def cal_term_freq_each_term(data_frame, document_term_freq):
+def cal_tfidf_each_term(data_frame, document_term_freq):
     """ Calculates the tfidf of each term"""
     results = []
     doc_length = len(data_frame.term_freq)
@@ -63,6 +62,23 @@ def cal_term_freq_each_term(data_frame, document_term_freq):
             res[term] = tfidf(term_set[term], doc_length, document_term_freq[term])
         results.append(res)
     data_frame['tf_idf'] = results
+
+
+def compare_cosine_for_random_100_column(data_frame, cosine_similarity):
+    """ calculate and returns """
+    # lets select 100 ids
+    sample_data = data_frame.sample(100)
+
+    # calculating cosines
+    first_row_ids = sample_data.iloc[0].tf_idf
+
+    results = []
+    for _, row in sample_data.iterrows():
+        res = cosine_similarity(first_row_ids, row.tf_idf)
+        results.append(res)
+    sample_data['cosine'] = results
+    sample_data.sort_values(['cosine'], ascending=[False], inplace=True)
+    print(sample_data.head())
 
 
 
@@ -110,12 +126,13 @@ def main():
             f.write(str(term_document_freq))
 
     # Calculate ifidf scores
-    cal_term_freq_each_term(df1, term_document_freq)
+    cal_tfidf_each_term(df1, term_document_freq)
     ger_tf_idf = df1[df1.name == "German"].iloc[0].tf_idf
     eu_tf_idf = df1[df1.name == "Europe"].iloc[0].tf_idf
 
     print("Cosine", calculate_cosine_similarity(ger_tf_idf, eu_tf_idf))
-    print(df1.head())
+    compare_cosine_for_random_100_column(df1, calculate_cosine_similarity)
+
 
 
 if __name__ == "__main__":
